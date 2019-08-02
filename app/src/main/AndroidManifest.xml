@@ -12,8 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Fragment.fragment_tvshow"></activity>
-        <activity android:name=".Fragment.fragment_movie" />
+        <activity android:name=".people.Detail"></activity>
+        <activity android:name=".people.MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
