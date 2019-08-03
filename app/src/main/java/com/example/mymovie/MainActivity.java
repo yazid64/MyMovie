@@ -3,6 +3,7 @@ package com.example.mymovie;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -22,7 +23,7 @@ CardView cv_movie,cv_tv,cv_people;
         cv_movie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //pindah class movie
+                startActivity(new Intent(MainActivity.this,movieMain.class));
             }
         });
 
