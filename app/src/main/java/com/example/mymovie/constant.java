@@ -1,4 +1,4 @@
-package com.example.mymovie.Constant;
+package com.example.mymovie;
 
 public class constant {
     public final static String Movie_URL_NowPlaying = "https://api.themoviedb.org/3/movie/now_playing?api_key=c55707e61472f37ee6d234e3d5171e4c&language=en-US&page=1";
@@ -19,6 +19,5 @@ public class constant {
 
     public final static String People_Populer = "https://api.themoviedb.org/3/person/popular?api_key=c55707e61472f37ee6d234e3d5171e4c&language=en-US&page=1";
 
-
+    public final static String EROR = "Periksa kembali jaringan anda";
 }
-

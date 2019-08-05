@@ -4,31 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".movieMain">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="@color/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:title="Movie" />
+    tools:context=".movie_main"
+    android:orientation="vertical">
 
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:tabMode="fixed"
         app:tabGravity="fill"
         app:tabIndicatorColor="@color/colorAccent"
-        app:tabTextColor="#fff"
-        app:tabMode="fixed"
-        android:id="@+id/tab_layout"
-        android:background="@color/colorPrimary"></com.google.android.material.tabs.TabLayout>
+        android:id="@+id/tab_layout_movie"></com.google.android.material.tabs.TabLayout>
+
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
+        android:id="@+id/view_pager_movie"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        ></androidx.viewpager.widget.ViewPager>
+        android:layout_height="match_parent"></androidx.viewpager.widget.ViewPager>
 
 </LinearLayout>

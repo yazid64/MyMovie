@@ -23,7 +23,7 @@ CardView cv_movie,cv_tv,cv_people;
         cv_movie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,movieMain.class));
+                startActivity(new Intent(MainActivity.this,movie_main.class));
             }
         });
 
@@ -37,7 +37,7 @@ CardView cv_movie,cv_tv,cv_people;
         cv_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //pindah class tv
+                startActivity(new Intent(MainActivity.this,tvshow_main.class));
             }
         });
     }

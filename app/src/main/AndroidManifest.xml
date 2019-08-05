@@ -4,6 +4,7 @@
     package="com.example.mymovie">
 
     <dist:module dist:instant="true" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -12,7 +13,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".movieMain"></activity>
+        <!--<activity android:name=".movie.fragment_movie_upcoming"/>-->
+        <!--<activity android:name=".movie.fragment_movie_toprated" />-->
+        <!--<activity android:name=".movie.fragment_movie_nowplaying" />-->
+        <!--<activity android:name=".movie.fragment_movie_popular" />-->
+        <activity android:name=".movie_main" />
+        <!--<activity android:name=".tvshow.fragment_tvshow_toprated" />-->
+        <!--<activity android:name=".tvshow.fragment_tvshow_populer" />-->
+        <!--<activity android:name=".tvshow.fragment_tvshow_ontheair" />-->
+        <!--<activity android:name=".tvshow.fragment_tvshow_airingtoday" />-->
+        <activity android:name=".tvshow_main" />
         <activity android:name=".people.Detail" />
         <activity android:name=".people.MainActivity" />
         <activity android:name=".MainActivity">

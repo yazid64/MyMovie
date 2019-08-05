@@ -6,12 +6,16 @@ public class model {
     private String Popularity;
     private String Release_date;
     private String Overview;
-    private int Image;
+    private String Image;
     private String original_language;
     private String original_title;
     private String vote_average;
 
-    public model(String title, String popularity, String release_date, String overview, int image, String original_language, String original_title, String vote_average) {
+    public model() {
+
+    }
+
+    public model(String title, String popularity, String release_date, String overview, String image, String original_language, String original_title, String vote_average) {
         Title = title;
         Popularity = popularity;
         Release_date = release_date;
@@ -54,11 +58,11 @@ public class model {
         Overview = overview;
     }
 
-    public int getImage() {
+    public String getImage() {
         return Image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         Image = image;
     }
 

@@ -1,21 +1,22 @@
 package com.example.mymovie.movie;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import com.example.mymovie.R;
 
-public class fragment_populer extends Fragment {
+public class fragment_movie_popular extends Fragment {
 
     View v;
 
-    public fragment_populer(){
+    public fragment_movie_popular(){
 
     }
 
@@ -23,7 +24,7 @@ public class fragment_populer extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_movie_populer,container,false);
+        v = inflater.inflate(R.layout.activity_fragment_movie_popular,container,false);
         return v;
     }
 }
