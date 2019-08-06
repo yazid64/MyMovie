@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="130dp"
-    android:layout_height="200dp"
-    android:id="@+id/List_movie_Nowplaying"
-    android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground"
     xmlns:cardview="http://schemas.android.com/tools"
+    android:layout_width="130dp"
+    android:layout_height="210dp"
+    android:id="@+id/List_movie_Nowplaying"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
     android:layout_margin="5dp"
     cardview:cardCornerRadius="4dp">
     <LinearLayout
@@ -22,7 +22,7 @@
 
         <TextView
             android:id="@+id/productName_nowplaying"
-            android:textSize="13sp"
+            android:textSize="12sp"
             android:textColor="#2d2d2d"
             android:text="Title"
             android:layout_width="match_parent"

@@ -3,8 +3,7 @@ package com.example.mymovie.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class model implements Parcelable {
-
+public class modelUpcoming implements Parcelable {
     private String Title;
     private String Popularity;
     private String Release_date;
@@ -14,22 +13,21 @@ public class model implements Parcelable {
     private String original_title;
     private String vote_average;
 
-    public model() {
-
-    }
-
-    public model(String title, String popularity, String release_date, String overview, String image, String original_language, String original_title, String vote_average) {
-        Title = title;
-        Popularity = popularity;
-        Release_date = release_date;
-        Overview = overview;
-        Image = image;
+    public modelUpcoming(String title, String popularity, String release_date, String overview, String image, String original_language, String original_title, String vote_average){
+        this.Title = title;
+        this.Popularity = popularity;
+        this.Release_date = release_date;
+        this.Overview = overview;
+        this.Image = image;
         this.original_language = original_language;
         this.original_title = original_title;
         this.vote_average = vote_average;
     }
 
-    protected model(Parcel in) {
+
+
+
+    protected modelUpcoming(Parcel in) {
         Title = in.readString();
         Popularity = in.readString();
         Release_date = in.readString();
@@ -40,17 +38,9 @@ public class model implements Parcelable {
         vote_average = in.readString();
     }
 
-    public static final Creator<model> CREATOR = new Creator<model>() {
-        @Override
-        public model createFromParcel(Parcel in) {
-            return new model(in);
-        }
+    public modelUpcoming() {
 
-        @Override
-        public model[] newArray(int size) {
-            return new model[size];
-        }
-    };
+    }
 
     public String getTitle() {
         return Title;
@@ -116,6 +106,19 @@ public class model implements Parcelable {
         this.vote_average = vote_average;
     }
 
+
+    public static final Creator<modelUpcoming> CREATOR = new Creator<modelUpcoming>() {
+        @Override
+        public modelUpcoming createFromParcel(Parcel in) {
+            return new modelUpcoming(in);
+        }
+
+        @Override
+        public modelUpcoming[] newArray(int size) {
+            return new modelUpcoming[size];
+        }
+    };
+
     @Override
     public int describeContents() {
         return 0;
@@ -123,7 +126,6 @@ public class model implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
         dest.writeString(Title);
         dest.writeString(original_language);
         dest.writeString(original_title);
