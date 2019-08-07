@@ -23,8 +23,8 @@ public class tvshow_main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tvshow_main);
 
-        tabLayout = (TabLayout)findViewById(R.id.tab_layout_tvshow);
-        viewPager = (ViewPager)findViewById(R.id.view_pager_tvshow);
+//        tabLayout = (TabLayout)findViewById(R.id.tab_layout_tvshow);
+//        viewPager = (ViewPager)findViewById(R.id.view_pager_tvshow);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         adapter.AddFragment(new fragment_tvshow_airingtoday(),"AiringToday");

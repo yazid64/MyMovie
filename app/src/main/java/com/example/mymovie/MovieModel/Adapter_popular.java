@@ -9,86 +9,78 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.mymovie.R;
-import com.example.mymovie.adapter.RecyclerViewAdapter;
 import com.example.mymovie.model.model;
-import com.example.mymovie.model.modelToprated;
+import com.example.mymovie.model.modelPopular;
 import com.example.mymovie.model.modelUpcoming;
 import com.example.mymovie.movie.Detail_nowplaying;
-import com.example.mymovie.movie.Detail_upcoming;
 
 import java.util.ArrayList;
 
-public class Adapter_upcoming extends RecyclerView.Adapter<Adapter_upcoming.MyViewHolder>{
+public class Adapter_popular extends RecyclerView.Adapter<Adapter_popular.MyViewHolder>{
 
     RequestOptions option;
     Context mContext;
     //    List<model> mData;
-    ArrayList<modelUpcoming> arrayList;
+    ArrayList<modelUpcoming> populars;
 
-    public Adapter_upcoming(Context mContext, ArrayList<modelUpcoming> arrayList){
+    public Adapter_popular(Context mContext, ArrayList<modelUpcoming> populars){
         this.mContext = mContext;
-        this.arrayList = arrayList;
+        this.populars = populars;
 
         option = new RequestOptions().centerCrop().placeholder(R.drawable.ic_signal_cellular_connected_no_internet_0_bar_black_24dp).error(R.drawable.ic_signal_cellular_connected_no_internet_0_bar_black_24dp);
     }
-
 
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
-        v = LayoutInflater.from(mContext).inflate(R.layout.item_movie_upcoming,parent,false);
+        v = LayoutInflater.from(mContext).inflate(R.layout.item_movie_populer,parent,false);
         MyViewHolder vHolder = new MyViewHolder(v);
         return vHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        final modelUpcoming mModel = arrayList.get(position);
+        final modelUpcoming mModel = populars.get(position);
 
         String url = "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
         holder.productname.setText(mModel.getTitle());
-//        holder.original_title.setText(mModel.getOriginal_title());
-//        holder.overview.setText(mModel.getOverview());
-//        holder.release.setText(mModel.getRelease_date());
-//        holder.vote.setText(mModel.getVote_average());
-//        holder.language.setText(mModel.getOriginal_language());
-//        holder.popularity.setText(mModel.getPopularity());
         Glide.with(mContext).load(url+mModel.getImage()).apply(option).into(holder.imageproduct);
+
     }
 
     @Override
     public int getItemCount() {
-        return arrayList.size();
+        return populars.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView productname,original_title,release,vote,popularity,language,overview;
         ImageView imageproduct;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            productname = (TextView)itemView.findViewById(R.id.productName_upcoming);
-            imageproduct = (ImageView)itemView.findViewById(R.id.productImg_upcoming);
-            original_title = (TextView)itemView.findViewById(R.id.originaltitle_movie_nowplaying);
-            release = (TextView)itemView.findViewById(R.id.release_movie_nowplaying);
-            vote = (TextView)itemView.findViewById(R.id.voteaverage_movie_nowplaying);
-            popularity = (TextView)itemView.findViewById(R.id.popularity_movie_nowplaying);
-            language = (TextView)itemView.findViewById(R.id.language_movie_nowplaying);
-            overview = (TextView)itemView.findViewById(R.id.overview_movie_nowplaying);
+            productname = (TextView)itemView.findViewById(R.id.productName_popular);
+            imageproduct = (ImageView)itemView.findViewById(R.id.productImg_popular);
+//            original_title = (TextView)itemView.findViewById(R.id.originaltitle_movie_nowplaying);
+//            release = (TextView)itemView.findViewById(R.id.release_movie_nowplaying);
+//            vote = (TextView)itemView.findViewById(R.id.voteaverage_movie_nowplaying);
+//            popularity = (TextView)itemView.findViewById(R.id.popularity_movie_nowplaying);
+//            language = (TextView)itemView.findViewById(R.id.language_movie_nowplaying);
+//            overview = (TextView)itemView.findViewById(R.id.overview_movie_nowplaying);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent i = new Intent(mContext, Detail_upcoming.class);
-                    i.putExtra("upcoming",arrayList.get(getAdapterPosition()));
+                    Intent i = new Intent(mContext, Detail_nowplaying.class);
+                    i.putExtra("get",populars.get(getAdapterPosition()));
                     mContext.startActivity(i);
                 }
             });

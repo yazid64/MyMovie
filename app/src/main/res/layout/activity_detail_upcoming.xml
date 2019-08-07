@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".movie.Detail_nowplaying"
+    tools:context=".movie.Detail_upcoming"
     android:background="#303030">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -17,7 +17,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/collapsingtoolbar_id"
+            android:id="@+id/collapsingtoolbar_id_upcoming"
             app:layout_scrollFlags="exitUntilCollapsed|scroll"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginStart="48dp"
@@ -31,7 +31,7 @@
             </androidx.appcompat.widget.Toolbar>
 
             <TextView
-                android:id="@+id/title_movie_nowplaying"
+                android:id="@+id/title_movie_upcoming"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Anime title"
@@ -48,7 +48,7 @@
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="5dp"
                 android:text="2019-2-10"
-                android:id="@+id/release_movie_nowplaying"/>
+                android:id="@+id/release_movie_upcoming"/>
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -59,7 +59,7 @@
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
                     android:background="#fff"
-                    android:id="@+id/img_movie_nowplaying"/>
+                    android:id="@+id/img_movie_upcoming"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -71,7 +71,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/originaltitle_movie_nowplaying"
+                        android:id="@+id/originaltitle_movie_upcoming"
                         android:text="Anime Title"
                         android:textStyle="bold"
                         android:textSize="18sp"/>
@@ -82,7 +82,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/voteaverage_movie_nowplaying"
+                        android:id="@+id/voteaverage_movie_upcoming"
                         android:text="0.0"
                         android:layout_marginTop="10dp"
                         android:textColor="#fff"
@@ -99,7 +99,7 @@
                         android:drawablePadding="5dp"
                         android:textColor="#fff"
                         android:drawableLeft="@drawable/ic_star_black_24dp"
-                        android:id="@+id/popularity_movie_nowplaying"/>
+                        android:id="@+id/popularity_movie_upcoming"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -108,7 +108,7 @@
                         android:textColor="#ffffff"
                         android:drawablePadding="5dp"
                         android:drawableLeft="@drawable/ic_flag_black_24dp"
-                        android:id="@+id/language_movie_nowplaying"/>
+                        android:id="@+id/language_movie_upcoming"/>
 
                 </LinearLayout>
 
@@ -130,7 +130,7 @@
 
 
         <TextView
-            android:id="@+id/overview_movie_nowplaying"
+            android:id="@+id/overview_movie_upcoming"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Anime Description"

@@ -14,8 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".movie.Detail_nowplaying"></activity>
-        <!-- <activity android:name=".movie.fragment_movie_upcoming"/> -->
+        <activity android:name=".movie.Detail_popular"></activity>
+        <activity android:name=".movie.Detail_upcoming" />
+        <activity android:name=".movie.Detail_nowplaying" /> <!-- <activity android:name=".movie.fragment_movie_upcoming"/> -->
         <!-- <activity android:name=".movie.fragment_movie_toprated" /> -->
         <!-- <activity android:name=".movie.fragment_movie_nowplaying" /> -->
         <!-- <activity android:name=".movie.fragment_movie_popular" /> -->
@@ -25,13 +26,15 @@
         <!-- <activity android:name=".tvshow.fragment_tvshow_airingtoday" /> -->
         <activity android:name=".tvshow_main" />
         <activity android:name=".people.Detail" />
-        <activity android:name=".people.MainActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".people.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity">
+
         </activity>
     </application>
 

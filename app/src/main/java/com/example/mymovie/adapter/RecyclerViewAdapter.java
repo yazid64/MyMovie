@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.mymovie.R;
 import com.example.mymovie.model.model;
+import com.example.mymovie.model.modelUpcoming;
 import com.example.mymovie.movie.Detail_nowplaying;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         option = new RequestOptions().centerCrop().placeholder(R.drawable.ic_signal_cellular_connected_no_internet_0_bar_black_24dp).error(R.drawable.ic_signal_cellular_connected_no_internet_0_bar_black_24dp);
     }
+
 
     @NonNull
     @Override

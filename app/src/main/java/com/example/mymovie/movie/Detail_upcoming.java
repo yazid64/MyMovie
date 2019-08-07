@@ -3,8 +3,6 @@ package com.example.mymovie.movie;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,9 +10,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.mymovie.R;
 import com.example.mymovie.model.model;
+import com.example.mymovie.model.modelToprated;
+import com.example.mymovie.model.modelUpcoming;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
-public class Detail_nowplaying extends AppCompatActivity {
+public class Detail_upcoming extends AppCompatActivity {
     TextView language;
     TextView overview;
     ImageView img;
@@ -27,20 +27,20 @@ public class Detail_nowplaying extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_nowplaying);
+        setContentView(R.layout.activity_detail_upcoming);
 
-        title = findViewById(R.id.title_movie_nowplaying);
-        original_title = findViewById(R.id.originaltitle_movie_nowplaying);
-        vote = findViewById(R.id.voteaverage_movie_nowplaying);
-        release = findViewById(R.id.release_movie_nowplaying);
-        popularity = findViewById(R.id.popularity_movie_nowplaying);
-        img =  findViewById(R.id.img_movie_nowplaying);
-        overview = findViewById(R.id.overview_movie_nowplaying);
-        language = findViewById(R.id.language_movie_nowplaying);
+        title = findViewById(R.id.title_movie_upcoming);
+        original_title = findViewById(R.id.originaltitle_movie_upcoming);
+        vote = findViewById(R.id.voteaverage_movie_upcoming);
+        release = findViewById(R.id.release_movie_upcoming);
+        popularity = findViewById(R.id.popularity_movie_upcoming);
+        img =  findViewById(R.id.img_movie_upcoming);
+        overview = findViewById(R.id.overview_movie_upcoming);
+        language = findViewById(R.id.language_movie_upcoming);
 
-        final model job = getIntent().getExtras().getParcelable("get");
+        final modelUpcoming job = getIntent().getExtras().getParcelable("upcoming");
 
-        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsingtoolbar_id);
+        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsingtoolbar_id_upcoming);
         collapsingToolbarLayout.setTitleEnabled(true);
 
         if (job != null) {
@@ -65,7 +65,7 @@ public class Detail_nowplaying extends AppCompatActivity {
             String url = "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
             Glide.with(this).load(url+Vote).apply(requestOptions).into(img);
 
-    }
+        }
 
     }
 }

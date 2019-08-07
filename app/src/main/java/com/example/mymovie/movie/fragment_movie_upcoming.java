@@ -23,6 +23,7 @@ import com.example.mymovie.MovieModel.Adapter_upcoming;
 import com.example.mymovie.R;
 import com.example.mymovie.adapter.RecyclerViewAdapter;
 import com.example.mymovie.model.model;
+import com.example.mymovie.model.modelToprated;
 import com.example.mymovie.model.modelUpcoming;
 
 import org.json.JSONArray;
