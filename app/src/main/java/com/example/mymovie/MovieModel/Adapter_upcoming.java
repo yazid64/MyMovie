@@ -9,17 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.mymovie.R;
-import com.example.mymovie.adapter.RecyclerViewAdapter;
 import com.example.mymovie.model.model;
-import com.example.mymovie.model.modelToprated;
-import com.example.mymovie.model.modelUpcoming;
-import com.example.mymovie.movie.Detail_nowplaying;
 import com.example.mymovie.movie.Detail_upcoming;
 
 import java.util.ArrayList;
@@ -29,9 +24,9 @@ public class Adapter_upcoming extends RecyclerView.Adapter<Adapter_upcoming.MyVi
     RequestOptions option;
     Context mContext;
     //    List<model> mData;
-    ArrayList<modelUpcoming> arrayList;
+    ArrayList<model> arrayList;
 
-    public Adapter_upcoming(Context mContext, ArrayList<modelUpcoming> arrayList){
+    public Adapter_upcoming(Context mContext, ArrayList<model> arrayList){
         this.mContext = mContext;
         this.arrayList = arrayList;
 
@@ -51,7 +46,7 @@ public class Adapter_upcoming extends RecyclerView.Adapter<Adapter_upcoming.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        final modelUpcoming mModel = arrayList.get(position);
+        final model mModel = arrayList.get(position);
 
         String url = "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
         holder.productname.setText(mModel.getTitle());
@@ -78,7 +73,7 @@ public class Adapter_upcoming extends RecyclerView.Adapter<Adapter_upcoming.MyVi
             productname = (TextView)itemView.findViewById(R.id.productName_upcoming);
             imageproduct = (ImageView)itemView.findViewById(R.id.productImg_upcoming);
             original_title = (TextView)itemView.findViewById(R.id.originaltitle_movie_nowplaying);
-            release = (TextView)itemView.findViewById(R.id.release_movie_nowplaying);
+//            release = (TextView)itemView.findViewById(R.id.release_movie_nowplaying);
             vote = (TextView)itemView.findViewById(R.id.voteaverage_movie_nowplaying);
             popularity = (TextView)itemView.findViewById(R.id.popularity_movie_nowplaying);
             language = (TextView)itemView.findViewById(R.id.language_movie_nowplaying);

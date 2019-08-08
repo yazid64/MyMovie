@@ -14,8 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.mymovie.R;
-import com.example.mymovie.model.modelToprated;
-import com.example.mymovie.model.modelUpcoming;
+import com.example.mymovie.model.model;
 import com.example.mymovie.movie.Detail_nowplaying;
 
 import java.util.ArrayList;
@@ -25,9 +24,9 @@ public class Adapter_toprated extends RecyclerView.Adapter<Adapter_toprated.MyVi
     RequestOptions option;
     Context mContext;
     //    List<model> mData;
-    ArrayList<modelToprated> populars;
+    ArrayList<model> populars;
 
-    public Adapter_toprated(Context mContext, ArrayList<modelToprated> populars){
+    public Adapter_toprated(Context mContext, ArrayList<model> populars){
         this.mContext = mContext;
         this.populars = populars;
 
@@ -45,7 +44,7 @@ public class Adapter_toprated extends RecyclerView.Adapter<Adapter_toprated.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull Adapter_toprated.MyViewHolder holder, int position) {
-        final modelToprated mModel = populars.get(position);
+        final model mModel = populars.get(position);
 
         String url = "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
         holder.productname.setText(mModel.getTitle());

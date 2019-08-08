@@ -2,7 +2,6 @@ package com.example.mymovie.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +16,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.mymovie.R;
 import com.example.mymovie.model.model;
-import com.example.mymovie.model.modelUpcoming;
 import com.example.mymovie.movie.Detail_nowplaying;
 
 import java.util.ArrayList;
-import java.util.List;
+
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     RequestOptions option;
@@ -89,13 +87,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView productname,original_title,release,vote,popularity,language,overview;
         ImageView imageproduct;
 CardView cv;
-         MyViewHolder(final View itemview){
+         public MyViewHolder(final View itemview){
             super(itemview);
             productname = (TextView)itemview.findViewById(R.id.productName_nowplaying);
             imageproduct = (ImageView)itemview.findViewById(R.id.productImg_nowplaying);
             cv = itemview.findViewById(R.id.List_movie_Nowplaying);
              original_title = (TextView)itemview.findViewById(R.id.originaltitle_movie_nowplaying);
-             release = (TextView)itemview.findViewById(R.id.release_movie_nowplaying);
+//             release = (TextView)itemview.findViewById(R.id.release_movie_nowplaying);
              vote = (TextView)itemview.findViewById(R.id.voteaverage_movie_nowplaying);
              popularity = (TextView)itemview.findViewById(R.id.popularity_movie_nowplaying);
              language = (TextView)itemview.findViewById(R.id.language_movie_nowplaying);

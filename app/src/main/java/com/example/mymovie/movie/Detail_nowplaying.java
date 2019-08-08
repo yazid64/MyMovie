@@ -2,11 +2,13 @@ package com.example.mymovie.movie;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -23,13 +25,15 @@ public class Detail_nowplaying extends AppCompatActivity {
     TextView vote;
     TextView original_title;
     TextView title;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_nowplaying);
 
-        title = findViewById(R.id.title_movie_nowplaying);
+        toolbar = findViewById(R.id.toolbar_nowplaying);
+//        title = findViewById(R.id.title_movie_nowplaying);
         original_title = findViewById(R.id.originaltitle_movie_nowplaying);
         vote = findViewById(R.id.voteaverage_movie_nowplaying);
         release = findViewById(R.id.release_movie_nowplaying);
@@ -37,6 +41,8 @@ public class Detail_nowplaying extends AppCompatActivity {
         img =  findViewById(R.id.img_movie_nowplaying);
         overview = findViewById(R.id.overview_movie_nowplaying);
         language = findViewById(R.id.language_movie_nowplaying);
+
+
 
         final model job = getIntent().getExtras().getParcelable("get");
 
@@ -52,7 +58,7 @@ public class Detail_nowplaying extends AppCompatActivity {
             String Popularity = job.getPopularity();
             String Language = job.getOriginal_language();
             String Overview = job.getOverview();
-            title.setText(Title);
+//            title.setText(Title);
             popularity.setText(image);
             original_title.setText(Release);
             overview.setText(Overview);
@@ -65,7 +71,21 @@ public class Detail_nowplaying extends AppCompatActivity {
             String url = "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
             Glide.with(this).load(url+Vote).apply(requestOptions).into(img);
 
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setTitle(Title);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+//            getSupportActionBar().setDisplayShowCustomEnabled(true);
+//            getSupportActionBar().setCustomView(R.layout.activity_detail_nowplaying);
+//            ((TextView) findViewById(R.id.release_movie_nowplaying)).setText(Release);
     }
 
+
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 }

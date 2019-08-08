@@ -2,7 +2,6 @@ package com.example.mymovie.movie;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -21,10 +21,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.mymovie.MovieModel.Adapter_upcoming;
 import com.example.mymovie.R;
-import com.example.mymovie.adapter.RecyclerViewAdapter;
 import com.example.mymovie.model.model;
-import com.example.mymovie.model.modelToprated;
-import com.example.mymovie.model.modelUpcoming;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,7 +36,7 @@ public class fragment_movie_upcoming extends Fragment {
     private Adapter_upcoming recyclerViewAdapter;
     //    List<model> lstmodel;
     SwipeRefreshLayout swipeLayout;
-    ArrayList<modelUpcoming> arrayList = new ArrayList<>();
+    ArrayList<model> arrayList = new ArrayList<>();
     public fragment_movie_upcoming(){
 
     }
@@ -83,23 +80,23 @@ public class fragment_movie_upcoming extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONArray nowplaying = response.getJSONArray("results");
-                            for (int i = 0; i < nowplaying.length(); i++) {
-                                JSONObject hasil = nowplaying.getJSONObject(i);
-                                modelUpcoming item = new modelUpcoming();
-                                item.setTitle(hasil.getString("title"));
-                                item.setOriginal_language(hasil.getString("original_language"));
-                                item.setOriginal_title(hasil.getString("original_title"));
-                                item.setOverview(hasil.getString("overview"));
-                                item.setPopularity(hasil.getString("popularity"));
-                                item.setRelease_date(hasil.getString("release_date"));
-                                item.setVote_average(hasil.getString("vote_average"));
-                                item.setImage(hasil.getString("poster_path"));
-                                arrayList.add(item);
-                                Log.e("", "onResponse: " + arrayList.size());
-                            }
+                                JSONArray nowplaying = response.getJSONArray("results");
+                                for (int i = 0; i < nowplaying.length(); i++) {
+                                    JSONObject hasil = nowplaying.getJSONObject(i);
+                                    model item = new model();
+                                    item.setTitle(hasil.getString("title"));
+                                    item.setOriginal_language(hasil.getString("original_language"));
+                                    item.setOriginal_title(hasil.getString("original_title"));
+                                    item.setOverview(hasil.getString("overview"));
+                                    item.setPopularity(hasil.getString("popularity"));
+                                    item.setRelease_date(hasil.getString("release_date"));
+                                    item.setVote_average(hasil.getString("vote_average"));
+                                    item.setImage(hasil.getString("poster_path"));
+                                    arrayList.add(item);
+                                    Log.e("", "onResponse: " + arrayList.size());
+                                }
 
-                            recyclerViewAdapter.notifyDataSetChanged();
+                                recyclerViewAdapter.notifyDataSetChanged();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -111,7 +108,7 @@ public class fragment_movie_upcoming extends Fragment {
                     @Override
                     public void onError(ANError anError) {
                         Log.e("", "onError: " + anError.getErrorBody());
-
+                        Toast.makeText(getContext(),"Koneksi anda buruk",Toast.LENGTH_SHORT).show();
                     }
                 });
     }

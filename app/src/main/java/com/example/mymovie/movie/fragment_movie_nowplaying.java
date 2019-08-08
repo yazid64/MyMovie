@@ -108,7 +108,7 @@ public class fragment_movie_nowplaying extends Fragment {
                                     Log.e("", "onResponse: " + arrayList.size());
                                 }
 
-                            recyclerViewAdapter.notifyDataSetChanged();
+                                recyclerViewAdapter.notifyDataSetChanged();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -120,7 +120,7 @@ public class fragment_movie_nowplaying extends Fragment {
                     @Override
                     public void onError(ANError anError) {
                         Log.e("", "onError: " + anError.getErrorBody());
-
+                        Toast.makeText(getContext(),"Koneksi anda buruk",Toast.LENGTH_SHORT).show();
                     }
                 });
     }

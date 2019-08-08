@@ -1,4 +1,4 @@
-package com.example.mymovie.movie;
+package com.example.mymovie.tvshow;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,10 +10,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.mymovie.R;
+import com.example.mymovie.model.Tvshow;
 import com.example.mymovie.model.model;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
-public class Detail_upcoming extends AppCompatActivity {
+public class Detail_airingtoday extends AppCompatActivity {
     TextView language;
     TextView overview;
     ImageView img;
@@ -26,47 +27,46 @@ public class Detail_upcoming extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_upcoming);
+        setContentView(R.layout.activity_detail_airingtoday);
 
-        toolbar = findViewById(R.id.toolbar_upcoming);
-        original_title = findViewById(R.id.originaltitle_movie_upcoming);
-        vote = findViewById(R.id.voteaverage_movie_upcoming);
-        release = findViewById(R.id.release_movie_upcoming);
-        popularity = findViewById(R.id.popularity_movie_upcoming);
-        img =  findViewById(R.id.img_movie_upcoming);
-        overview = findViewById(R.id.overview_movie_upcoming);
-        language = findViewById(R.id.language_movie_upcoming);
+        original_title = findViewById(R.id.originaltitle_tv_airingtoday);
+        vote = findViewById(R.id.voteaverage_tv_airingtoday);
+        release = findViewById(R.id.release_tv_airingtoday);
+        popularity = findViewById(R.id.popularity_tv_airingtoday);
+        img =  findViewById(R.id.img_tv_airingtoday);
+        overview = findViewById(R.id.overview_tv_airingtoday);
+        language = findViewById(R.id.language_tv_airingtoday);
 
-        final model job = getIntent().getExtras().getParcelable("upcoming");
+        final Tvshow job = getIntent().getExtras().getParcelable("get");
 
-        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsingtoolbar_id_upcoming);
+        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsingtoolbar_id_airingtoday);
         collapsingToolbarLayout.setTitleEnabled(true);
 
         if (job != null) {
-            String Title = job.getTitle();
-            String image = job.getImage();
-            String Original_title = job.getOriginal_title();
+            String Title = job.getName();
+            String image = job.getPoster_path();
+            String Original_title = job.getOrginal_name();
             String Vote = job.getVote_average();
-            String Release = job.getRelease_date();
+            String Release = job.getFirst_air_date();
             String Popularity = job.getPopularity();
             String Language = job.getOriginal_language();
             String Overview = job.getOverview();
+
 //            title.setText(Title);
-            popularity.setText(image);
-            original_title.setText(Release);
+            popularity.setText(Popularity);
+            original_title.setText(Original_title);
             overview.setText(Overview);
-            language.setText(Popularity);
-            release.setText(Original_title);
-            vote.setText(Language);
+            language.setText(Language);
+            release.setText(Release);
+            vote.setText(Vote);
 
             setSupportActionBar(toolbar);
             getSupportActionBar().setTitle(Title);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
             RequestOptions requestOptions = new RequestOptions().centerCrop().placeholder(R.drawable.ic_signal_cellular_connected_no_internet_0_bar_black_24dp).error(R.drawable.ic_signal_cellular_connected_no_internet_0_bar_black_24dp);
             String url = "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
-            Glide.with(this).load(url+Vote).apply(requestOptions).into(img);
+            Glide.with(this).load(url+image).apply(requestOptions).into(img);
 
         }
 

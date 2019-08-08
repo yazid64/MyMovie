@@ -1,6 +1,7 @@
 package com.example.mymovie.Tvmodel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.mymovie.R;
 import com.example.mymovie.model.Tvshow;
+import com.example.mymovie.tvshow.Detail_airingtoday;
+import com.example.mymovie.tvshow.Detail_toprated;
 
 import java.util.ArrayList;
 
@@ -62,6 +65,15 @@ public class Adapter_toprated extends RecyclerView.Adapter<Adapter_toprated.MyVi
 
             productname = (TextView)itemView.findViewById(R.id.productName_tv_toprated);
             imageproduct = (ImageView)itemView.findViewById(R.id.productImg_tv_toprated);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(mContext, Detail_toprated.class);
+                    i.putExtra("get",toprated.get(getAdapterPosition()));
+                    mContext.startActivity(i);
+                }
+            });
         }
     }
 }

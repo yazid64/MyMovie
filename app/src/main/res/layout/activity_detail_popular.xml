@@ -17,13 +17,14 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/collapsingtoolbar_id_upcoming"
+            android:id="@+id/collapsingtoolbar_id_pop"
             app:layout_scrollFlags="exitUntilCollapsed|scroll"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp">
 
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_popular"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
@@ -31,24 +32,14 @@
             </androidx.appcompat.widget.Toolbar>
 
             <TextView
-                android:id="@+id/title_movie_upcoming"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Anime title"
-                android:textSize="30sp"
-                android:gravity="bottom"
-                android:layout_marginBottom="30dp"
-                android:paddingLeft="15dp"
-                android:textColor="#fff" />
-            <TextView
-                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:layout_gravity="bottom"
-                android:layout_marginBottom="5dp"
-                android:text="2019-2-10"
-                android:id="@+id/release_movie_upcoming"/>
+                android:id="@+id/originaltitle_movie_popular"
+                android:text="Anime Title"
+                android:textStyle="bold"
+                android:layout_marginTop="13dp"
+                android:paddingLeft="45dp"
+                android:textSize="18sp"/>
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -59,7 +50,7 @@
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
                     android:background="#fff"
-                    android:id="@+id/img_movie_upcoming"/>
+                    android:id="@+id/img_movie_pop"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -71,25 +62,20 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/originaltitle_movie_upcoming"
-                        android:text="Anime Title"
-                        android:textStyle="bold"
-                        android:textSize="18sp"/>
-
-
-
+                        android:layout_gravity="bottom"
+                        android:text="2019-2-10"
+                        android:id="@+id/release_movie_popular"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/voteaverage_movie_upcoming"
+                        android:id="@+id/voteaverage_movie_pop"
                         android:text="0.0"
-                        android:layout_marginTop="10dp"
                         android:textColor="#fff"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         android:drawablePadding="5dp"
-                        android:drawableLeft="@drawable/ic_get_app_black_24dp"
+                        android:drawableLeft="@drawable/ic_notifications_black_24dp"
                         android:paddingRight="5dp"/>
 
                     <TextView
@@ -99,7 +85,7 @@
                         android:drawablePadding="5dp"
                         android:textColor="#fff"
                         android:drawableLeft="@drawable/ic_star_black_24dp"
-                        android:id="@+id/popularity_movie_upcoming"/>
+                        android:id="@+id/popularity_movie_pop"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -108,7 +94,7 @@
                         android:textColor="#ffffff"
                         android:drawablePadding="5dp"
                         android:drawableLeft="@drawable/ic_flag_black_24dp"
-                        android:id="@+id/language_movie_upcoming"/>
+                        android:id="@+id/language_movie_pop"/>
 
                 </LinearLayout>
 
@@ -130,7 +116,7 @@
 
 
         <TextView
-            android:id="@+id/overview_movie_upcoming"
+            android:id="@+id/overview_movie_pop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Anime Description"

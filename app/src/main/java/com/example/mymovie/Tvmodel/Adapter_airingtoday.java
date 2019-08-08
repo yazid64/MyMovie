@@ -1,6 +1,7 @@
 package com.example.mymovie.Tvmodel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import com.example.mymovie.R;
 import com.example.mymovie.adapter.RecyclerViewAdapter;
 import com.example.mymovie.model.Tvshow;
 import com.example.mymovie.model.model;
+import com.example.mymovie.movie.Detail_nowplaying;
+import com.example.mymovie.tvshow.Detail_airingtoday;
 
 import java.util.ArrayList;
 
@@ -65,6 +68,15 @@ public class Adapter_airingtoday extends RecyclerView.Adapter<Adapter_airingtoda
 
             productname = (TextView)itemView.findViewById(R.id.productName_tv_airingtoday);
             imageproduct = (ImageView)itemView.findViewById(R.id.productImg_tv_airingtoday);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(mContext, Detail_airingtoday.class);
+                    i.putExtra("get",airingtoday.get(getAdapterPosition()));
+                    mContext.startActivity(i);
+                }
+            });
         }
     }
 }

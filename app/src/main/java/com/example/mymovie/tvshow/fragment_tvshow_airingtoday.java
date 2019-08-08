@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -103,7 +104,7 @@ public class fragment_tvshow_airingtoday extends Fragment {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-
+                            Toast.makeText(getContext(),"Koneksi anda buruk",Toast.LENGTH_SHORT).show();
                         }
 
                     }

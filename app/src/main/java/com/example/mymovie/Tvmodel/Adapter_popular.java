@@ -1,6 +1,7 @@
 package com.example.mymovie.Tvmodel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import com.example.mymovie.R;
 import com.example.mymovie.adapter.RecyclerViewAdapter;
 import com.example.mymovie.model.Tvshow;
 import com.example.mymovie.model.model;
+import com.example.mymovie.tvshow.Detail_airingtoday;
+import com.example.mymovie.tvshow.Detail_popular;
 
 import java.util.ArrayList;
 
@@ -62,6 +65,15 @@ public class Adapter_popular extends RecyclerView.Adapter<Adapter_popular.MyView
             super(itemView);
             productname = (TextView)itemView.findViewById(R.id.productName_tv_popular);
             imageproduct = (ImageView)itemView.findViewById(R.id.productImg_tv_popular);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(mContext, Detail_popular.class);
+                    i.putExtra("get",popular.get(getAdapterPosition()));
+                    mContext.startActivity(i);
+                }
+            });
         }
     }
 }

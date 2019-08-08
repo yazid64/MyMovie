@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -14,7 +16,9 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.mymovie.R;
 import com.example.mymovie.adapter.RecyclerViewAdapter;
+import com.example.mymovie.adapter.people_adapter;
 import com.example.mymovie.model.model;
+import com.example.mymovie.model.people;
 import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
@@ -25,17 +29,33 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private RecyclerViewAdapter recyclerViewAdapter;
-    //    List<model> lstmodel;
+    private people_adapter recyclerViewAdapter;
     SwipeRefreshLayout swipeLayout;
-    ArrayList<model> arrayList = new ArrayList<>();
+    ArrayList<people> arrayList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         recyclerView = findViewById(R.id.recy_people);
+        swipeLayout = findViewById(R.id.swipe_container);
         fetchJobs();
-        recyclerViewAdapter = new RecyclerViewAdapter(getApplicationContext(),arrayList);
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code here
+                arrayList.clear();
+                fetchJobs();
+                // To keep animation for 4 seconds
+                new Handler().postDelayed(new Runnable() {
+                    @Override public void run() {
+                        // Stop animation (This will be after 3 seconds)
+                        swipeLayout.setRefreshing(false);
+                    }
+                }, 3000);
+//                Toast.makeText(getApplicationContext(), "Job is Up to date!", Toast.LENGTH_SHORT).show();// Delay in millis
+            }
+        });
+        recyclerViewAdapter = new people_adapter(getApplicationContext(),arrayList);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),3));
         recyclerView.setAdapter(recyclerViewAdapter);
     }
@@ -50,24 +70,26 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             JSONArray nowplaying = response.getJSONArray("results");
                             for (int i = 0; i < nowplaying.length(); i++) {
-//                                JSONObject hasil = nowplaying.getJSONObject(i);
-//                                model item = new model();
-//                                item.setTitle(hasil.getString("title"));
-//                                item.setOriginal_language(hasil.getString("original_language"));
-//                                item.setOriginal_title(hasil.getString("original_title"));
-//                                item.setOverview(hasil.getString("overview"));
-//                                item.setPopularity(hasil.getString("popularity"));
-//                                item.setRelease_date(hasil.getString("release_date"));
-//                                item.setVote_average(hasil.getString("vote_average"));
-//                                item.setImage(hasil.getString("poster_path"));
-//                                arrayList.add(item);
+                                JSONObject hasil = nowplaying.getJSONObject(i);
+                                people item = new people();
+                                item.setName(hasil.getString("name"));
+                                item.setPopularity(hasil.getString("popularity"));
+                                item.setProfile_path(hasil.getString("profile_path"));
+                                arrayList.add(item);
                                 JSONArray jsonArray = nowplaying.getJSONObject(i).getJSONArray("known_for");
-
                                 for (int j = 0; j < jsonArray.length(); j++) {
-                                    model model = new model();
+                                    people model = new people();
                                     model.setTitle(jsonArray.getJSONObject(j).getString("title"));
+                                    model.setImage_film(jsonArray.getJSONObject(j).getString("poster_path"));
+                                    model.setVote_average(jsonArray.getJSONObject(j).getString("vote_average"));
+                                    model.setMedia_type(jsonArray.getJSONObject(j).getString("media_type"));
+                                    model.setOriginal_language(jsonArray.getJSONObject(j).getString("original_language"));
+                                    model.setOriginal_title(jsonArray.getJSONObject(j).getString("original_title"));
+                                    model.setPopularity_film(jsonArray.getJSONObject(j).getString("popularity"));
+                                    model.setOverview(jsonArray.getJSONObject(j).getString("overview"));
+                                    model.setRelease(jsonArray.getJSONObject(j).getString("release_date"));
 //                                    String title = ;
-                                    Log.d("check response", "onResponse: "+model.getTitle());
+//                                    Log.d("check response", "onResponse: "+model.getTitle());
                                 }
 
                                 Log.e("", "onResponse: " + arrayList.size());
@@ -84,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onError(ANError anError) {
                         Log.e("", "onError: " + anError.getErrorBody());
-
+                        Toast.makeText(getApplicationContext(),"Koneksi anda buruk",Toast.LENGTH_SHORT).show();
                     }
                 });
     }
