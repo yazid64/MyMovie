@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
@@ -55,6 +56,7 @@ public class fragment_movie_nowplaying extends Fragment {
         recyclerView = (RecyclerView)v.findViewById(R.id.rv_movie_nowplaying);
         swipeLayout =v.findViewById(R.id.swipe_movie_nowplaying);
         fetchJobs();
+
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

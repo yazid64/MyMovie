@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.mymovie.R;
 import com.example.mymovie.model.Tvshow;
-import com.example.mymovie.model.model;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 public class Detail_airingtoday extends AppCompatActivity {
@@ -29,6 +28,7 @@ public class Detail_airingtoday extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_airingtoday);
 
+        toolbar = findViewById(R.id.toolbar_airingtoday);
         original_title = findViewById(R.id.originaltitle_tv_airingtoday);
         vote = findViewById(R.id.voteaverage_tv_airingtoday);
         release = findViewById(R.id.release_tv_airingtoday);

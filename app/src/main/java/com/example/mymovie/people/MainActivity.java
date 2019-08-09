@@ -2,6 +2,8 @@ package com.example.mymovie.people;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -15,6 +17,7 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.mymovie.R;
+import com.example.mymovie.adapter.PeopleAdapter;
 import com.example.mymovie.adapter.RecyclerViewAdapter;
 import com.example.mymovie.adapter.people_adapter;
 import com.example.mymovie.model.model;
@@ -26,12 +29,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private people_adapter recyclerViewAdapter;
+    private PeopleAdapter recyclerViewAdapter;
     SwipeRefreshLayout swipeLayout;
-    ArrayList<people> arrayList = new ArrayList<>();
+    private List<people>peopleList = new ArrayList<>();
+//    ArrayList<people> arrayList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 // Your code here
-                arrayList.clear();
+                peopleList.clear();
                 fetchJobs();
                 // To keep animation for 4 seconds
                 new Handler().postDelayed(new Runnable() {
@@ -55,10 +60,19 @@ public class MainActivity extends AppCompatActivity {
 //                Toast.makeText(getApplicationContext(), "Job is Up to date!", Toast.LENGTH_SHORT).show();// Delay in millis
             }
         });
-        recyclerViewAdapter = new people_adapter(getApplicationContext(),arrayList);
+//        recyclerViewAdapter = new people_adapter(getApplicationContext(),peopleList);
+//        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),3));
+//        recyclerView.setAdapter(recyclerViewAdapter);
+setupRecyclerJobs();
+    }
+
+    private void setupRecyclerJobs(){
+        recyclerViewAdapter = new PeopleAdapter(this, peopleList);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),3));
+        recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(recyclerViewAdapter);
     }
+
     private void fetchJobs() {
         AndroidNetworking.get("https://api.themoviedb.org/3/person/popular?api_key=c55707e61472f37ee6d234e3d5171e4c&language=en-US&page=1")
                 .setTag("results")
@@ -75,11 +89,11 @@ public class MainActivity extends AppCompatActivity {
                                 item.setName(hasil.getString("name"));
                                 item.setPopularity(hasil.getString("popularity"));
                                 item.setProfile_path(hasil.getString("profile_path"));
-                                arrayList.add(item);
+                                peopleList.add(item);
                                 JSONArray jsonArray = nowplaying.getJSONObject(i).getJSONArray("known_for");
                                 for (int j = 0; j < jsonArray.length(); j++) {
                                     people model = new people();
-                                    model.setTitle(jsonArray.getJSONObject(j).getString("title"));
+//                                    model.setTitle(jsonArray.getJSONObject(j).getString("title"));
                                     model.setImage_film(jsonArray.getJSONObject(j).getString("poster_path"));
                                     model.setVote_average(jsonArray.getJSONObject(j).getString("vote_average"));
                                     model.setMedia_type(jsonArray.getJSONObject(j).getString("media_type"));
@@ -92,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 //                                    Log.d("check response", "onResponse: "+model.getTitle());
                                 }
 
-                                Log.e("", "onResponse: " + arrayList.size());
+                                Log.e("", "onResponse: " + peopleList.size());
                             }
                             recyclerViewAdapter.notifyDataSetChanged();
 

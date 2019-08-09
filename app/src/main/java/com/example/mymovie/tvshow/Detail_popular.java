@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import androidx.appcompat.widget.Toolbar;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.mymovie.R;
@@ -21,12 +21,13 @@ public class Detail_popular extends AppCompatActivity {
     TextView vote;
     TextView original_title;
     TextView title;
-
+Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_popular2);
 
+        toolbar = findViewById(R.id.toolbar_popular);
         original_title = findViewById(R.id.originaltitle_tv_popular);
         vote = findViewById(R.id.voteaverage_tv_popular);
         release = findViewById(R.id.release_tv_popular);
@@ -50,7 +51,7 @@ public class Detail_popular extends AppCompatActivity {
             String Language = job.getOriginal_language();
             String Overview = job.getOverview();
 
-            title.setText(Title);
+//            title.setText(Title);
             popularity.setText(Popularity);
             original_title.setText(Original_title);
             overview.setText(Overview);
@@ -58,6 +59,9 @@ public class Detail_popular extends AppCompatActivity {
             release.setText(Release);
             vote.setText(Vote);
 
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setTitle(Title);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             RequestOptions requestOptions = new RequestOptions().centerCrop().placeholder(R.drawable.ic_signal_cellular_connected_no_internet_0_bar_black_24dp).error(R.drawable.ic_signal_cellular_connected_no_internet_0_bar_black_24dp);
             String url = "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
