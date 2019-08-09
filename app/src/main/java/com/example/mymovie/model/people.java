@@ -34,6 +34,8 @@ public class people implements Parcelable {
         Original_title = original_title;
     }
 
+
+
     protected people(Parcel in) {
         Popularity_film = in.readString();
         Name = in.readString();

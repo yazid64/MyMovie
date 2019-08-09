@@ -2,8 +2,6 @@ package com.example.mymovie.people;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -18,11 +16,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.mymovie.R;
 import com.example.mymovie.adapter.PeopleAdapter;
-import com.example.mymovie.adapter.RecyclerViewAdapter;
-import com.example.mymovie.adapter.people_adapter;
-import com.example.mymovie.model.model;
 import com.example.mymovie.model.people;
-import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private PeopleAdapter recyclerViewAdapter;
     SwipeRefreshLayout swipeLayout;
     private List<people>peopleList = new ArrayList<>();
-//    ArrayList<people> arrayList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 // Your code here
-                peopleList.clear();
                 fetchJobs();
                 // To keep animation for 4 seconds
                 new Handler().postDelayed(new Runnable() {
@@ -60,9 +52,6 @@ public class MainActivity extends AppCompatActivity {
 //                Toast.makeText(getApplicationContext(), "Job is Up to date!", Toast.LENGTH_SHORT).show();// Delay in millis
             }
         });
-//        recyclerViewAdapter = new people_adapter(getApplicationContext(),peopleList);
-//        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),3));
-//        recyclerView.setAdapter(recyclerViewAdapter);
 setupRecyclerJobs();
     }
 
@@ -82,6 +71,7 @@ setupRecyclerJobs();
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+                            peopleList.clear();
                             JSONArray nowplaying = response.getJSONArray("results");
                             for (int i = 0; i < nowplaying.length(); i++) {
                                 JSONObject hasil = nowplaying.getJSONObject(i);
@@ -90,21 +80,22 @@ setupRecyclerJobs();
                                 item.setPopularity(hasil.getString("popularity"));
                                 item.setProfile_path(hasil.getString("profile_path"));
                                 peopleList.add(item);
-                                JSONArray jsonArray = nowplaying.getJSONObject(i).getJSONArray("known_for");
-                                for (int j = 0; j < jsonArray.length(); j++) {
-                                    people model = new people();
+//                                JSONArray jsonArray = hasil.getJSONArray("known_for");
+//                                for (int j = 0; j < jsonArray.length(); j++) {
+//                                    people model = new people();
 //                                    model.setTitle(jsonArray.getJSONObject(j).getString("title"));
-                                    model.setImage_film(jsonArray.getJSONObject(j).getString("poster_path"));
-                                    model.setVote_average(jsonArray.getJSONObject(j).getString("vote_average"));
-                                    model.setMedia_type(jsonArray.getJSONObject(j).getString("media_type"));
-                                    model.setOriginal_language(jsonArray.getJSONObject(j).getString("original_language"));
-                                    model.setOriginal_title(jsonArray.getJSONObject(j).getString("original_title"));
-                                    model.setPopularity_film(jsonArray.getJSONObject(j).getString("popularity"));
-                                    model.setOverview(jsonArray.getJSONObject(j).getString("overview"));
-                                    model.setRelease(jsonArray.getJSONObject(j).getString("release_date"));
-//                                    String title = ;
+//                                    model.setImage_film(jsonArray.getJSONObject(j).getString("poster_path"));
+//                                    model.setVote_average(jsonArray.getJSONObject(j).getString("vote_average"));
+//                                    model.setMedia_type(jsonArray.getJSONObject(j).getString("media_type"));
+//                                    model.setOriginal_language(jsonArray.getJSONObject(j).getString("original_language"));
+//                                    model.setOriginal_title(jsonArray.getJSONObject(j).getString("original_title"));
+//                                    model.setPopularity_film(jsonArray.getJSONObject(j).getString("popularity"));
+//                                    model.setOverview(jsonArray.getJSONObject(j).getString("overview"));
+//                                    model.setRelease(jsonArray.getJSONObject(j).getString("release_date"));
+////                                    String title = ;
 //                                    Log.d("check response", "onResponse: "+model.getTitle());
-                                }
+//                                    peopleList.add(model);
+//                                }
 
                                 Log.e("", "onResponse: " + peopleList.size());
                             }

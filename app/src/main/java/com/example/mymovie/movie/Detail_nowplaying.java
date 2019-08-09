@@ -66,7 +66,6 @@ public class Detail_nowplaying extends AppCompatActivity {
             release.setText(Original_title);
             vote.setText(Language);
 
-
             RequestOptions requestOptions = new RequestOptions().centerCrop().placeholder(R.drawable.ic_signal_cellular_connected_no_internet_0_bar_black_24dp).error(R.drawable.ic_signal_cellular_connected_no_internet_0_bar_black_24dp);
             String url = "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
             Glide.with(this).load(url+Vote).apply(requestOptions).into(img);

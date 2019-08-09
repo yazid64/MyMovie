@@ -55,33 +55,35 @@ public class fragment_movie_nowplaying extends Fragment {
         v = inflater.inflate(R.layout.activity_fragment_movie_nowplaying,container,false);
         recyclerView = (RecyclerView)v.findViewById(R.id.rv_movie_nowplaying);
         swipeLayout =v.findViewById(R.id.swipe_movie_nowplaying);
-        fetchJobs();
-
-        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                // Your code here
-                arrayList.clear();
-                fetchJobs();
-                // To keep animation for 4 seconds
-                new Handler().postDelayed(new Runnable() {
-                    @Override public void run() {
-                        // Stop animation (This will be after 3 seconds)
-                        swipeLayout.setRefreshing(false);
-                    }
-                }, 3000);
-//                Toast.makeText(getApplicationContext(), "Job is Up to date!", Toast.LENGTH_SHORT).show();// Delay in millis
-            }
-        });
-        recyclerViewAdapter = new RecyclerViewAdapter(getContext(),arrayList);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
-        recyclerView.setAdapter(recyclerViewAdapter);
         return v;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
+        recyclerViewAdapter = new RecyclerViewAdapter(getContext(),arrayList);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(recyclerViewAdapter);
+
+        fetchJobs();
+
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code here
+
+                fetchJobs();
+
+            }
+        });
 
     }
 
@@ -93,8 +95,10 @@ public class fragment_movie_nowplaying extends Fragment {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        swipeLayout.setRefreshing(false);
                         try {
-                                JSONArray nowplaying = response.getJSONArray("results");
+                            arrayList.clear();
+                            JSONArray nowplaying = response.getJSONArray("results");
                                 for (int i = 0; i < nowplaying.length(); i++) {
                                     JSONObject hasil = nowplaying.getJSONObject(i);
                                     model item = new model();
@@ -109,8 +113,9 @@ public class fragment_movie_nowplaying extends Fragment {
                                     arrayList.add(item);
                                     Log.e("", "onResponse: " + arrayList.size());
                                 }
-
                                 recyclerViewAdapter.notifyDataSetChanged();
+
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -121,6 +126,7 @@ public class fragment_movie_nowplaying extends Fragment {
 
                     @Override
                     public void onError(ANError anError) {
+                        swipeLayout.setRefreshing(false);
                         Log.e("", "onError: " + anError.getErrorBody());
                         Toast.makeText(getContext(),"Koneksi anda buruk",Toast.LENGTH_SHORT).show();
                     }

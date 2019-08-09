@@ -54,7 +54,7 @@ public class fragment_movie_popular extends Fragment {
             @Override
             public void onRefresh() {
                 // Your code here
-                populars.clear();
+
                 fetchJobs();
                 // To keep animation for 4 seconds
                 new Handler().postDelayed(new Runnable() {
@@ -79,6 +79,7 @@ public class fragment_movie_popular extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+                            populars.clear();
                                 JSONArray nowplaying = response.getJSONArray("results");
                                 for (int i = 0; i < nowplaying.length(); i++) {
                                     JSONObject hasil = nowplaying.getJSONObject(i);

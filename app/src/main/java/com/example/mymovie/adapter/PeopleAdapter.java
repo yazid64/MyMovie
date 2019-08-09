@@ -14,7 +14,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.mymovie.R;
 import com.example.mymovie.model.people;
+import com.example.mymovie.people.MainActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleViewHolder> {
@@ -22,12 +24,13 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleView
     private List<people> peopleList;
     RequestOptions option;
 
-public PeopleAdapter(Context mCtx,List<people>peopleList){
+public PeopleAdapter(Context mCtx, List<people> peopleList){
 this.mCtx = mCtx;
 this.peopleList = peopleList;
 
     option = new RequestOptions().centerCrop().placeholder(R.drawable.ic_signal_cellular_connected_no_internet_0_bar_black_24dp).error(R.drawable.ic_signal_cellular_connected_no_internet_0_bar_black_24dp);
 }
+
 
     @NonNull
     @Override
