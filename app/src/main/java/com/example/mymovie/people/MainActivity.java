@@ -79,23 +79,24 @@ setupRecyclerJobs();
                                 item.setName(hasil.getString("name"));
                                 item.setPopularity(hasil.getString("popularity"));
                                 item.setProfile_path(hasil.getString("profile_path"));
+
+                                JSONArray jsonArray = hasil.getJSONArray("known_for");
+                                for (int j = 0; j < jsonArray.length(); j++) {
+                                    Log.e("", "index: " + j);
+                                    item.setTitle(jsonArray.getJSONObject(j).optString("title"));
+                                    item.setImage_film(jsonArray.getJSONObject(j).optString("poster_path"));
+                                    item.setVote_average(jsonArray.getJSONObject(j).optString("vote_average"));
+                                    item.setMedia_type(jsonArray.getJSONObject(j).optString("media_type"));
+                                    item.setOriginal_language(jsonArray.getJSONObject(j).optString("original_language"));
+                                    item.setOriginal_title(jsonArray.getJSONObject(j).optString("original_title"));
+                                    item.setPopularity_film(jsonArray.getJSONObject(j).optString("popularity"));
+                                    item.setOverview(jsonArray.getJSONObject(j).optString("overview"));
+                                    item.setRelease(jsonArray.getJSONObject(j).optString("release_date"));
+//                                    String title = ;
+                                    Log.d("check response", "onResponse: "+item.getTitle());
+                                }
+
                                 peopleList.add(item);
-//                                JSONArray jsonArray = hasil.getJSONArray("known_for");
-//                                for (int j = 0; j < jsonArray.length(); j++) {
-//                                    people model = new people();
-//                                    model.setTitle(jsonArray.getJSONObject(j).getString("title"));
-//                                    model.setImage_film(jsonArray.getJSONObject(j).getString("poster_path"));
-//                                    model.setVote_average(jsonArray.getJSONObject(j).getString("vote_average"));
-//                                    model.setMedia_type(jsonArray.getJSONObject(j).getString("media_type"));
-//                                    model.setOriginal_language(jsonArray.getJSONObject(j).getString("original_language"));
-//                                    model.setOriginal_title(jsonArray.getJSONObject(j).getString("original_title"));
-//                                    model.setPopularity_film(jsonArray.getJSONObject(j).getString("popularity"));
-//                                    model.setOverview(jsonArray.getJSONObject(j).getString("overview"));
-//                                    model.setRelease(jsonArray.getJSONObject(j).getString("release_date"));
-////                                    String title = ;
-//                                    Log.d("check response", "onResponse: "+model.getTitle());
-//                                    peopleList.add(model);
-//                                }
 
                                 Log.e("", "onResponse: " + peopleList.size());
                             }
